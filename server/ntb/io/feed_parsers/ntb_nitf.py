@@ -9,7 +9,7 @@
 # at https://www.sourcefabric.org/superdesk/license
 
 import superdesk
-from xml.etree import ElementTree as ET
+from lxml import etree
 from superdesk.io.iptc import subject_codes
 
 SUBJECT_TYPE = 'tobject.subject.type'
@@ -79,7 +79,7 @@ def build_body_html(xml):
     for elem in xml.find('body/body.content'):
         if elem.tag == 'p' and elem.get('class') == 'lead':
             continue
-        elements.append(ET.tostring(elem, encoding='unicode'))
+        elements.append(etree.tostring(elem, encoding='unicode'))
     return ''.join(elements)
 
 

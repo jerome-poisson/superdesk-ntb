@@ -9,7 +9,7 @@
 # at https://www.sourcefabric.org/superdesk/license
 
 from superdesk.publish.publish_service import PublishService, set_publish_service
-from xml.etree import ElementTree as ET
+from lxml import etree
 import logging
 logger = logging.getLogger(__name__)
 
@@ -22,8 +22,8 @@ class NTBPublishService(PublishService):
         # we reparse formatted item to get filename from <meta name="filename"> element
         # this way we are sure that we have the exact same filename
         try:
-            xml = ET.fromstring(item['formatted_item'])
-        except (KeyError, ET.ParseError) as e:
+            xml = etree.fromstring(item['formatted_item'])
+        except (KeyError, etree.ParseError) as e:
             filename = None
             logger.error("Error on parsing, can't get filename: {}".format(e))
         else:

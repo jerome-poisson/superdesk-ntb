@@ -8,7 +8,7 @@
     Corrected fetching data from ebc and corrected decimals
 """
 
-import xml.etree.cElementTree as ElementTree
+from lxml import etree
 import urllib3
 import datetime
 
@@ -51,7 +51,7 @@ def get_currency(today):
         response = http.request('GET', urlXml, headers={'User-Agent': 'Mozilla/5.0'})
         xmlDoc = response.data.decode('UTF-8')
 
-        doc = ElementTree.fromstring(xmlDoc)
+        doc = etree.fromstring(xmlDoc)
         namespaces = {'gesmes': 'http://www.gesmes.org/xml/2002-08-01',
                       'eurofxref': 'http://www.ecb.int/vocabulary/2002-08-01/eurofxref'}
 
