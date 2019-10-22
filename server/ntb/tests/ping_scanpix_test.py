@@ -54,6 +54,7 @@ class PingScanpixTestCase(TestCase):
             },
         }), responses.calls[1].request.body)
         self.assertIn('original', renditions)
+        self.assertTrue(renditions['original']['href'].startswith('http'))
 
         # publish again, now with image fetched already
         item = copy.deepcopy(self.item)
